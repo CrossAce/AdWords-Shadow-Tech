@@ -146,6 +146,7 @@
             this.fileSystemWatcherPDF.Filter = "*.pdf*";
             this.fileSystemWatcherPDF.SynchronizingObject = this;
             this.fileSystemWatcherPDF.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcherPDF_Changed);
+            this.fileSystemWatcherPDF.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcherPDF_Changed);
             // 
             // fileSystemWatcherZIP
             // 
@@ -153,6 +154,7 @@
             this.fileSystemWatcherZIP.Filter = "*.zip*";
             this.fileSystemWatcherZIP.SynchronizingObject = this;
             this.fileSystemWatcherZIP.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcherZIP_Changed);
+            this.fileSystemWatcherZIP.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcherZIP_Changed);
             // 
             // Form1
             // 
@@ -164,6 +166,7 @@
             this.Name = "Form1";
             this.Text = "Shadow Adwords";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.notificationMenuStrip.ResumeLayout(false);

@@ -23,15 +23,19 @@ namespace ShadowAdwords
     public partial class PopUpAccNumber : Form
     {
 
-        private const string PDFFileNameTemplate = "";
-        private const string CFFileNameTemplate = "";
+        public delegate void OnClosedEventDelegate(int id);
+
+        private const string PDFFileNameTemplate = "AdWords_{0}_Report_{1}.pdf";
+        private const string CFFileNameTemplate = "{0}_recordings_{1}.zip";
         private const string datePattern = "MM.dd.yy";
-
-
         private string FilePath = "";
         private ConfigData ConfigData;
         private Mode Mode;
 
+
+
+        public int Id { get; set; }
+        public event OnClosedEventDelegate OnClosedEvent;
 
 
 
@@ -40,24 +44,16 @@ namespace ShadowAdwords
             InitializeComponent();
         }
 
-        public PopUpAccNumber(string filePath, Mode mode, ConfigData data)
+        public PopUpAccNumber(string filePath, Mode mode, ConfigData data, int id)
         {
             InitializeComponent();
             this.FilePath = filePath;
             this.ConfigData = data;
             this.Mode = mode;
+            this.Id = id;
         }
 
         public void ShowForm()
-        {
-            var desktopWorkingArea = Screen.PrimaryScreen.WorkingArea;
-            this.Left = desktopWorkingArea.Right - this.Width;
-            this.Top = desktopWorkingArea.Bottom - this.Height;
-            this.Show();
-        }
-
-
-        private void PopUpAccNumber_Load(object sender, EventArgs e)
         {
             if (Mode == Mode.PDFReport)
             {
@@ -70,6 +66,22 @@ namespace ShadowAdwords
                 okButt.Text = "Send Mail";
                 listBox1.Items.AddRange(ConfigData.adWordsPHLTeamEmails);
             }
+
+            var desktopWorkingArea = Screen.PrimaryScreen.WorkingArea;
+            this.Left = desktopWorkingArea.Right - this.Width;
+            this.Top = desktopWorkingArea.Bottom - this.Height;
+            this.Show();
+        }
+
+        protected virtual void OnClosedEventTriggered()
+        {
+            this?.OnClosedEvent.Invoke(this.Id);
+        }
+
+
+        private void PopUpAccNumber_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void okButt_Click(object sender, EventArgs e)
@@ -97,6 +109,8 @@ namespace ShadowAdwords
                     RenameFile(CFFileNameTemplate);
 
                 }
+
+                this.Close();
             }
         }
 

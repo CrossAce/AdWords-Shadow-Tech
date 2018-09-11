@@ -78,7 +78,7 @@
             ""});
             this.listBox1.Location = new System.Drawing.Point(282, 15);
             this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox1.Size = new System.Drawing.Size(145, 95);
             this.listBox1.TabIndex = 4;
             // 
@@ -92,7 +92,10 @@
             this.Controls.Add(this.okButt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inputTB);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PopUpAccNumber";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Shadow Tech";
             this.Load += new System.EventHandler(this.PopUpAccNumber_Load);
             this.ResumeLayout(false);

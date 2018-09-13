@@ -44,12 +44,12 @@ namespace ShadowAdwords
 
                     if (result)
                     {
-                        MessageBox.Show("Email Sent Successfully");
+                        MessageBox.Show("Email Sent Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Ugh Something Went Wrong!!!");
+                        MessageBox.Show("Ugh Something Went Wrong!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                

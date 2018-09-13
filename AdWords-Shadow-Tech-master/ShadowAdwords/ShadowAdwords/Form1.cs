@@ -14,12 +14,8 @@ namespace ShadowAdwords
 {
     /*
      ToDo: 
-     Upgrade the message Boxes 
-     Simplify where you can
-     Make an AdGroup Helper
-     Try to fix the login behind the config
      Make Emailing Async if You Can
-
+     Make an error log
      Test it fully with everything
     */
 
@@ -49,7 +45,7 @@ namespace ShadowAdwords
             RepositionForm();
             HasConfig();
             if (!isConfigured)
-                MakeConfig();
+                isConfigured = ConfigBuilder.Build(Application.StartupPath);
 
             readConfigToolStripMenuItem_Click(this, EventArgs.Empty);
             try
@@ -59,29 +55,9 @@ namespace ShadowAdwords
             }
             catch
             {
-                MessageBox.Show("Please Reconfig the Config File!");
+                MessageBox.Show("Please Reconfig the Config File!","Important!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
-          
-          
-            this.Hide();
-        }
-
-        // Put this in a different class
-        private void MakeConfig()
-        {
-            string path = Application.StartupPath;
-            using (var streamWriter = new StreamWriter(path + @"\config.xml", false))
-            {
-                streamWriter.WriteLine("<xml>");
-                streamWriter.WriteLine("<directoryForDwedReports></directoryForDwedReports>");
-                streamWriter.WriteLine("<emailFromName></emailFromName>");
-                streamWriter.WriteLine("<emailFromPassword></emailFromPassword>");
-                streamWriter.WriteLine("<emailToListPHL></emailToListPHL>");
-                streamWriter.WriteLine("<emailToListAcc></emailToListAcc>");
-                streamWriter.WriteLine("</xml>");
-            }
-            isConfigured = true;
-
+            
         }
 
         private void HasConfig()
@@ -139,7 +115,8 @@ namespace ShadowAdwords
         {
             configData = ConfigXmlReader.BuildConfigData(Application.StartupPath + @"\config.xml");
             if (configData.TestForEmptyFields())
-                MessageBox.Show("Config file empty.\nPlease configurate the program.");
+                MessageBox.Show("Config file empty.\nPlease configurate the program.",
+                    "Important!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
                 isConfigured = true;
         }
@@ -180,6 +157,12 @@ namespace ShadowAdwords
         private void notification_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Show();
+        }
+
+        private void adGroupHelperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdGroupHelper helper = new AdGroupHelper();
+            helper.Show();
         }
     }
 }

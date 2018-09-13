@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chargeEmailMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adGroupHelperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openConfigMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +45,9 @@
             this.exitToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSystemWatcherPDF = new System.IO.FileSystemWatcher();
             this.fileSystemWatcherZIP = new System.IO.FileSystemWatcher();
+            this.label1 = new System.Windows.Forms.Label();
+            this.openAdGroupHelperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.notificationMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcherPDF)).BeginInit();
@@ -65,6 +69,8 @@
             // actionsToolStripMenuItem
             // 
             this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.adGroupHelperToolStripMenuItem,
+            this.toolStripSeparator2,
             this.chargeEmailMenuItem});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
@@ -76,6 +82,13 @@
             this.chargeEmailMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chargeEmailMenuItem.Text = "Charge Email";
             this.chargeEmailMenuItem.Click += new System.EventHandler(this.chargeEmailMenuItem_Click);
+            // 
+            // adGroupHelperToolStripMenuItem
+            // 
+            this.adGroupHelperToolStripMenuItem.Name = "adGroupHelperToolStripMenuItem";
+            this.adGroupHelperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.adGroupHelperToolStripMenuItem.Text = "Ad Group Helper";
+            this.adGroupHelperToolStripMenuItem.Click += new System.EventHandler(this.adGroupHelperToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -102,6 +115,7 @@
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.Enabled = false;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -119,28 +133,29 @@
             // notificationMenuStrip
             // 
             this.notificationMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openAdGroupHelperToolStripMenuItem,
             this.openChargeFormToolStrip,
             this.toolStripSeparator1,
             this.exitToolStrip});
             this.notificationMenuStrip.Name = "notificationMenuStrip";
-            this.notificationMenuStrip.Size = new System.Drawing.Size(176, 54);
+            this.notificationMenuStrip.Size = new System.Drawing.Size(196, 76);
             // 
             // openChargeFormToolStrip
             // 
             this.openChargeFormToolStrip.Name = "openChargeFormToolStrip";
-            this.openChargeFormToolStrip.Size = new System.Drawing.Size(175, 22);
+            this.openChargeFormToolStrip.Size = new System.Drawing.Size(195, 22);
             this.openChargeFormToolStrip.Text = "Open Charge Form";
             this.openChargeFormToolStrip.Click += new System.EventHandler(this.chargeEmailMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(172, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
             // 
             // exitToolStrip
             // 
             this.exitToolStrip.Name = "exitToolStrip";
-            this.exitToolStrip.Size = new System.Drawing.Size(175, 22);
+            this.exitToolStrip.Size = new System.Drawing.Size(195, 22);
             this.exitToolStrip.Text = "Exit";
             this.exitToolStrip.Click += new System.EventHandler(this.exitToolStrip_Click);
             // 
@@ -160,18 +175,41 @@
             this.fileSystemWatcherZIP.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcherZIP_Changed);
             this.fileSystemWatcherZIP.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcherZIP_Changed);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(209, 109);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Made by: Vick Enev";
+            // 
+            // openAdGroupHelperToolStripMenuItem
+            // 
+            this.openAdGroupHelperToolStripMenuItem.Name = "openAdGroupHelperToolStripMenuItem";
+            this.openAdGroupHelperToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openAdGroupHelperToolStripMenuItem.Text = "Open Ad Group Helper";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 131);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Shadow Adwords";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "[Adwords] Shadow Tech ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -200,6 +238,10 @@
         private System.Windows.Forms.ToolStripMenuItem readConfigToolStripMenuItem;
         private System.IO.FileSystemWatcher fileSystemWatcherPDF;
         private System.IO.FileSystemWatcher fileSystemWatcherZIP;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem adGroupHelperToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem openAdGroupHelperToolStripMenuItem;
     }
 }
 

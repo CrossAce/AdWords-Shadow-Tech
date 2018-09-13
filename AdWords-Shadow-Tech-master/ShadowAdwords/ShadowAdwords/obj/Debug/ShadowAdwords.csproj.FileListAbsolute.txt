@@ -34,3 +34,4 @@ C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdw
 C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.csproj.CoreCompileInputs.cache
 C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.exe
 C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.pdb
+C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.AdGroupHelper.resources

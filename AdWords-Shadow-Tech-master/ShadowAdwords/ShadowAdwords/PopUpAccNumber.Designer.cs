@@ -128,6 +128,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PopUpAccNumber";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Shadow Tech";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PopUpAccNumber_FormClosing);

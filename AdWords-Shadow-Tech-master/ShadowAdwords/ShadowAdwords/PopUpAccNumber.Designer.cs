@@ -98,7 +98,6 @@
             this.SLR_RB.Text = "Since Last Refil";
             this.SLR_RB.UseVisualStyleBackColor = true;
             this.SLR_RB.Visible = false;
-            this.SLR_RB.CheckedChanged += new System.EventHandler(this.SLR_RB_CheckedChanged);
             // 
             // StB_RB
             // 
@@ -111,7 +110,6 @@
             this.StB_RB.Text = "Since the Begining";
             this.StB_RB.UseVisualStyleBackColor = true;
             this.StB_RB.Visible = false;
-            this.StB_RB.CheckedChanged += new System.EventHandler(this.StB_RB_CheckedChanged);
             // 
             // PopUpAccNumber
             // 

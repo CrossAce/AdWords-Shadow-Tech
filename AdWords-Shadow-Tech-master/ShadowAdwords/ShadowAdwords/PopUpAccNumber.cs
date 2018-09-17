@@ -29,7 +29,7 @@ namespace ShadowAdwords
         private const string CFFileNameTemplate = "{0}_recordings_{1}.zip";
         private const string datePattern = "MM.dd.yy";
         private string FilePath = "";
-        private ConfigData ConfigData;    
+        private ConfigData ConfigData;
         private Mode Mode;
 
 
@@ -82,7 +82,7 @@ namespace ShadowAdwords
 
         private void PopUpAccNumber_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void okButt_Click(object sender, EventArgs e)
@@ -97,68 +97,94 @@ namespace ShadowAdwords
 
         private void okButtonAction()
         {
-            if(inputTB.Text != String.Empty && inputTB.Text != "")
+            Task t = new Task(() =>
             {
-                if (Mode == Mode.PDFReport)
+                if (inputTB.Text != String.Empty && inputTB.Text != "")
                 {
-                    var result = RenameFile(PDFFileNameTemplate);
-                    if (result != null)
-                        Process.Start("explorer.exe", result);
-
-                    FilePath = result;
-                    this.Close();
-                }
-                else
-                {
-                    FilePath = RenameFile(CFFileNameTemplate);
-                    FileInfo info = new FileInfo(FilePath);
-                    if(info.Length < 25000000)
+                    if (Mode == Mode.PDFReport)
                     {
-                        var emails = GetSelectedEmails();
-                        if (emails.Length > 0)
+                        var result = RenameFile(PDFFileNameTemplate);
+                        if (result != null)
                         {
-                            string result = Mailer.SendCFReportsEmail(emails,
-                            RemoveWhitespace(inputTB.Text),
-                            ConfigData.authToken,
-                            FilePath,
-                            SLR_RB.Checked);
-                            if (result == "")
+                            this.Invoke(new Action(() => 
                             {
-                                MessageBox.Show("Email Sent Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                this.Close();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Ugh Something Went Wrong!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                ErrorLogWriter.LogError(result);
-                            }
-
+                                Process.Start("explorer.exe", result);
+                            }));
+                            
                         }
+
+                        FilePath = result;
+
+                        this.Invoke(new Action(() => { this.Close(); }));                  
                     }
                     else
                     {
-                        MessageBox.Show("Attachment Size is above 25MB.\nPlease send the message manualy.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                        this.Close();
-                    }
-                   
-                  
-                }
+                        FilePath = RenameFile(CFFileNameTemplate);
+                        FileInfo info = new FileInfo(FilePath);
+                        if (info.Length < 25000000)
+                        {
+                            string[] emails = new string[0];
 
-               
-            }
+                            this.Invoke(new Action(() => { emails = GetSelectedEmails(); }));
+                           
+                            if (emails.Length > 0)
+                            {
+                                this.Invoke(new Action(() => {
+                                    Disable();
+                                    this.WindowState = FormWindowState.Minimized;
+                                }));
+
+                                string result = Mailer.SendCFReportsEmail(emails,
+                                RemoveWhitespace(inputTB.Text),
+                                ConfigData.authToken,
+                                FilePath,
+                                SLR_RB.Checked);
+                             
+                                if (result == "")
+                                {
+                                    this.Invoke(new Action(() => {
+                                        MessageBox.Show("Email Sent Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        this.Close();
+                                    }));                                  
+                                }
+                                else
+                                {
+                                    this.Invoke(new Action(() => {
+                                        MessageBox.Show("Ugh Something Went Wrong!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        ErrorLogWriter.LogError(result);
+                                    })); 
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            this.Invoke(new Action(() => {
+                                MessageBox.Show("Attachment Size is above 25MB.\nPlease send the message manualy.", 
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                this.Close();
+                            }));
+                           
+                        }
+                    }
+
+
+                }
+            });
+            t.Start();
         }
 
         private string[] GetSelectedEmails()
         {
-            List<string> result = new List<string>(); 
-            foreach(var i in listBox1.SelectedItems)
+            List<string> result = new List<string>();
+            foreach (var i in listBox1.SelectedItems)
             {
-                if(i.ToString() != "")
-                result.Add(i.ToString());
+                if (i.ToString() != "")
+                    result.Add(i.ToString());
             }
             if (result.Count == 0)
-                MessageBox.Show("Please select the emails you want to send to!","Please Select Emails",
-                    MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                MessageBox.Show("Please select the emails you want to send to!", "Please Select Emails",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
             return result.ToArray();
         }
@@ -175,12 +201,16 @@ namespace ShadowAdwords
             {
                 File.Move(FilePath, newName);
 
-                return newName; 
+                return newName;
             }
             catch (Exception ex)
             {
-                ErrorLogWriter.LogError(ex.ToString());
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                this.Invoke(new Action(() =>
+                {
+                    ErrorLogWriter.LogError(ex.ToString());
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                }));
+                
                 return null;
             }
         }
@@ -191,18 +221,7 @@ namespace ShadowAdwords
                .Where(c => !Char.IsWhiteSpace(c))
                .ToArray());
 
-        private void SLR_RB_CheckedChanged(object sender, EventArgs e)
-        {
-            if (StB_RB.Checked)
-                StB_RB.Checked = false;
-        }
-
-        private void StB_RB_CheckedChanged(object sender, EventArgs e)
-        {
-            if (SLR_RB.Checked)
-                SLR_RB.Checked = false;
-        }
-
+      
         private void PopUpAccNumber_FormClosing(object sender, FormClosingEventArgs e)
         {
             OnClosedEventTriggered();
@@ -211,7 +230,17 @@ namespace ShadowAdwords
         private void inputTB_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                okButtonAction(); 
+                okButtonAction();
+        }
+        
+        private void Disable()
+        {
+            inputTB.Enabled = false;
+            SLR_RB.Enabled = false;
+            StB_RB.Enabled = false;
+            listBox1.Enabled = false;
+            okButt.Enabled = false;
+            cancelButt.Enabled = false;
         }
     }
 }

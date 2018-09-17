@@ -32,22 +32,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chargeEmailMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adGroupHelperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.chargeEmailMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openConfigMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notification = new System.Windows.Forms.NotifyIcon(this.components);
             this.notificationMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openAdGroupHelperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openChargeFormToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSystemWatcherPDF = new System.IO.FileSystemWatcher();
             this.fileSystemWatcherZIP = new System.IO.FileSystemWatcher();
             this.label1 = new System.Windows.Forms.Label();
-            this.openAdGroupHelperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.testLogWriterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.notificationMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcherPDF)).BeginInit();
@@ -76,25 +77,31 @@
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.actionsToolStripMenuItem.Text = "Actions";
             // 
-            // chargeEmailMenuItem
-            // 
-            this.chargeEmailMenuItem.Name = "chargeEmailMenuItem";
-            this.chargeEmailMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.chargeEmailMenuItem.Text = "Charge Email";
-            this.chargeEmailMenuItem.Click += new System.EventHandler(this.chargeEmailMenuItem_Click);
-            // 
             // adGroupHelperToolStripMenuItem
             // 
             this.adGroupHelperToolStripMenuItem.Name = "adGroupHelperToolStripMenuItem";
-            this.adGroupHelperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.adGroupHelperToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.adGroupHelperToolStripMenuItem.Text = "Ad Group Helper";
             this.adGroupHelperToolStripMenuItem.Click += new System.EventHandler(this.adGroupHelperToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
+            // 
+            // chargeEmailMenuItem
+            // 
+            this.chargeEmailMenuItem.Name = "chargeEmailMenuItem";
+            this.chargeEmailMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.chargeEmailMenuItem.Text = "Charge Email";
+            this.chargeEmailMenuItem.Click += new System.EventHandler(this.chargeEmailMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openConfigMenuItem,
-            this.readConfigToolStripMenuItem});
+            this.readConfigToolStripMenuItem,
+            this.testLogWriterToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -140,6 +147,12 @@
             this.notificationMenuStrip.Name = "notificationMenuStrip";
             this.notificationMenuStrip.Size = new System.Drawing.Size(196, 76);
             // 
+            // openAdGroupHelperToolStripMenuItem
+            // 
+            this.openAdGroupHelperToolStripMenuItem.Name = "openAdGroupHelperToolStripMenuItem";
+            this.openAdGroupHelperToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openAdGroupHelperToolStripMenuItem.Text = "Open Ad Group Helper";
+            // 
             // openChargeFormToolStrip
             // 
             this.openChargeFormToolStrip.Name = "openChargeFormToolStrip";
@@ -184,16 +197,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Made by: Vick Enev";
             // 
-            // openAdGroupHelperToolStripMenuItem
+            // testLogWriterToolStripMenuItem
             // 
-            this.openAdGroupHelperToolStripMenuItem.Name = "openAdGroupHelperToolStripMenuItem";
-            this.openAdGroupHelperToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.openAdGroupHelperToolStripMenuItem.Text = "Open Ad Group Helper";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.testLogWriterToolStripMenuItem.Name = "testLogWriterToolStripMenuItem";
+            this.testLogWriterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.testLogWriterToolStripMenuItem.Text = "Test_LogWriter";
+            this.testLogWriterToolStripMenuItem.Visible = false;
+            this.testLogWriterToolStripMenuItem.Click += new System.EventHandler(this.testLogWriterToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -242,6 +252,7 @@
         private System.Windows.Forms.ToolStripMenuItem adGroupHelperToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem openAdGroupHelperToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testLogWriterToolStripMenuItem;
     }
 }
 

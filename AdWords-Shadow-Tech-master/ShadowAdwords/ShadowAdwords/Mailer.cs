@@ -19,7 +19,7 @@ namespace ShadowAdwords
         /// <param name="callType">If Its [since last refil] or [since the begining]</param>
         /// <returns>True for successfull email send / False for failure to send the email</returns>
      
-        public static bool SendCFReportsEmail(string[] selectedPhlTeamEmails, string accountNumber, 
+        public static string SendCFReportsEmail(string[] selectedPhlTeamEmails, string accountNumber, 
             AuthToken authToken, string attachmentPath, bool callType)
         {
 
@@ -36,19 +36,19 @@ namespace ShadowAdwords
         /// <param name="accountNumberAndName">!IMPORTANT format - ACCNUMBER_ACCNAME</param>
         /// <param name="authToken">Authentication Token (Username & Password)</param>
         /// <returns>True for successfull email send / False for failure to send the email</returns>
-        public static bool SendChargeEmail(string[] accountantsEmailList, string ammountToLoad, string accountNumberAndName,
+        public static string SendChargeEmail(string[] accountantsEmailList, string ammountToLoad, string accountNumberAndName,
             AuthToken authToken)
         {
             string body = $"Здравейте,\n\nМоля заредете ${ammountToLoad} на  {accountNumberAndName}.";
-            return SendEmail(accountantsEmailList,body, 
-                $"[AdWords] {accountNumberAndName.Split('_')[0]} Зареждане на пари\n\nBest Regards From The PPC Team!",
+            return SendEmail(accountantsEmailList,body + "\n\nBest Regards From The PPC Team!", 
+                $"[AdWords] {accountNumberAndName.Split('_')[0]} Зареждане на пари",
                 authToken);
         }
 
-        private static bool SendEmail(string[] emails, string body, string subject, 
+        private static string SendEmail(string[] emails, string body, string subject, 
             AuthToken authToken, string attachmentPath = "")
         {
-            bool result = false;
+            string result = "nope";
             MailAddress Address = new MailAddress(authToken.Username);
            
             try
@@ -82,18 +82,17 @@ namespace ShadowAdwords
                         message.Attachments.Add(attachment);
 
                         smtp.Send(message);
-                        result = true;
+                        result = "";
                     }
-                    if (!result)
+                    if (result != "" )
                         break;
                 }
             }
             catch(Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
-                result = false;
+            {          
+                return ex.ToString();
             }
-            return result;
+            return "";
         }
     }
 }

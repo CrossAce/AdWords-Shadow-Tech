@@ -15,7 +15,7 @@ namespace ShadowAdwords
     /*
      ToDo: 
      Make Emailing Async if You Can
-     Make an error log
+     
      Test it fully with everything
     */
 
@@ -30,6 +30,7 @@ namespace ShadowAdwords
         private bool shouldClose = false;
         private int ids = 0;
         private ConfigData configData;
+        private ErrorLogWriter ErrorLogWriter;
         private Dictionary<int,PopUpAccNumber> popUpAccNumberForms; 
         private bool isConfigured = false;
         private string CurrentPath = "";
@@ -38,6 +39,7 @@ namespace ShadowAdwords
         {
             InitializeComponent();
             popUpAccNumberForms = new Dictionary<int,PopUpAccNumber>();
+            ErrorLogWriter = new ErrorLogWriter(Application.StartupPath); 
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -86,6 +88,7 @@ namespace ShadowAdwords
             }
             catch(Exception ex)
             {
+                ErrorLogWriter.LogError(ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             }
          
@@ -94,7 +97,8 @@ namespace ShadowAdwords
         private void chargeEmailMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ChargeForm chargeForm = new ChargeForm() { ConfigData = this.configData }; 
+            ChargeForm chargeForm = new ChargeForm() { ConfigData = this.configData };
+            chargeForm.ErrorLogWriter = this.ErrorLogWriter;
             chargeForm.Show();
         }
 
@@ -128,6 +132,7 @@ namespace ShadowAdwords
             if (!e.FullPath.Contains(".crdownload") && CurrentPath != e.FullPath)
             {           
                 var cf = new PopUpAccNumber(e.FullPath, Mode.PDFReport, configData,ids);
+                cf.ErrorLogWriter = this.ErrorLogWriter;
                 cf.ShowForm();
                 cf.OnClosedEvent += Cf_OnClosedEvent;
                 popUpAccNumberForms.Add(ids++,cf);
@@ -135,9 +140,10 @@ namespace ShadowAdwords
             }
         }
 
-        private void Cf_OnClosedEvent(int id)
+        private void Cf_OnClosedEvent(int id, string newName)
         {
             popUpAccNumberForms.Remove(id);
+            this.CurrentPath = newName;
             if (popUpAccNumberForms.Count == 0)
                 id = 0;
         }
@@ -147,6 +153,7 @@ namespace ShadowAdwords
             if (!e.FullPath.Contains(".crdownload") && CurrentPath != e.FullPath)
             {
                 var cf = new PopUpAccNumber(e.FullPath, Mode.CallfireReport, configData,ids);
+                cf.ErrorLogWriter = this.ErrorLogWriter;
                 cf.ShowForm();
                 cf.OnClosedEvent += Cf_OnClosedEvent;
                 popUpAccNumberForms.Add(ids++,cf);
@@ -163,6 +170,14 @@ namespace ShadowAdwords
         {
             AdGroupHelper helper = new AdGroupHelper();
             helper.Show();
+        }
+
+
+
+        //Testing the Error Log Writer - toolStrip is disabled in actual program
+        private void testLogWriterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ErrorLogWriter.LogError("Error");
         }
     }
 }

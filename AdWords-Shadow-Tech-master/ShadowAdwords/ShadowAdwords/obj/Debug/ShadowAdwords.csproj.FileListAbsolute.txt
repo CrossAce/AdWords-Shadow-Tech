@@ -35,3 +35,15 @@ C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdw
 C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.exe
 C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.pdb
 C:\Users\Nikolay\source\repos\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.AdGroupHelper.resources
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\bin\Debug\ShadowAdwords.exe.config
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\bin\Debug\ShadowAdwords.exe
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\bin\Debug\ShadowAdwords.pdb
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.AdGroupHelper.resources
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.ChargeForm.resources
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.Form1.resources
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.PopUpAccNumber.resources
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.Properties.Resources.resources
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.csproj.GenerateResource.cache
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.csproj.CoreCompileInputs.cache
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.exe
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Debug\ShadowAdwords.pdb

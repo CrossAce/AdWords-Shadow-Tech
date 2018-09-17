@@ -23,20 +23,20 @@ namespace ShadowAdwords
     public partial class PopUpAccNumber : Form
     {
 
-        public delegate void OnClosedEventDelegate(int id);
+        public delegate void OnClosedEventDelegate(int id, string newName);
 
         private const string PDFFileNameTemplate = "AdWords_{0}_Report_{1}.pdf";
         private const string CFFileNameTemplate = "{0}_recordings_{1}.zip";
         private const string datePattern = "MM.dd.yy";
         private string FilePath = "";
-        private ConfigData ConfigData;
+        private ConfigData ConfigData;    
         private Mode Mode;
 
 
 
         public int Id { get; set; }
         public event OnClosedEventDelegate OnClosedEvent;
-
+        public ErrorLogWriter ErrorLogWriter { get; set; }
 
 
         public PopUpAccNumber()
@@ -76,7 +76,7 @@ namespace ShadowAdwords
 
         protected virtual void OnClosedEventTriggered()
         {
-            this?.OnClosedEvent.Invoke(this.Id);
+            this?.OnClosedEvent.Invoke(this.Id, FilePath);
         }
 
 
@@ -104,6 +104,8 @@ namespace ShadowAdwords
                     var result = RenameFile(PDFFileNameTemplate);
                     if (result != null)
                         Process.Start("explorer.exe", result);
+
+                    FilePath = result;
                     this.Close();
                 }
                 else
@@ -112,12 +114,12 @@ namespace ShadowAdwords
                     var emails = GetSelectedEmails();
                     if (emails.Length > 0)
                     {
-                        bool result = Mailer.SendCFReportsEmail(emails,
+                        string result = Mailer.SendCFReportsEmail(emails,
                         RemoveWhitespace(inputTB.Text),
                         ConfigData.authToken,
                         FilePath,
                         SLR_RB.Checked);
-                        if (result)
+                        if (result == "")
                         {
                             MessageBox.Show("Email Sent Successfully","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
                             this.Close();
@@ -125,6 +127,7 @@ namespace ShadowAdwords
                         else
                         {
                             MessageBox.Show("Ugh Something Went Wrong!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ErrorLogWriter.LogError(result);
                         }
 
                     }
@@ -166,6 +169,7 @@ namespace ShadowAdwords
             }
             catch (Exception ex)
             {
+                ErrorLogWriter.LogError(ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 return null;
             }
@@ -192,6 +196,12 @@ namespace ShadowAdwords
         private void PopUpAccNumber_FormClosing(object sender, FormClosingEventArgs e)
         {
             OnClosedEventTriggered();
+        }
+
+        private void inputTB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                okButtonAction(); 
         }
     }
 }

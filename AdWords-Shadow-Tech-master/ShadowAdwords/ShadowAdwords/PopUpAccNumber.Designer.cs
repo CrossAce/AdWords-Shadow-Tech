@@ -44,6 +44,7 @@
             this.inputTB.Name = "inputTB";
             this.inputTB.Size = new System.Drawing.Size(255, 20);
             this.inputTB.TabIndex = 0;
+            this.inputTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputTB_KeyDown);
             // 
             // label1
             // 
@@ -131,6 +132,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Shadow Tech";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PopUpAccNumber_FormClosing);
             this.Load += new System.EventHandler(this.PopUpAccNumber_Load);
             this.ResumeLayout(false);

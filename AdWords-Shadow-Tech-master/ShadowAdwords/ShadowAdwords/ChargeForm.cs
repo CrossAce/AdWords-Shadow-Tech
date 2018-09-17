@@ -17,6 +17,9 @@ namespace ShadowAdwords
         /// </summary>
         public ConfigData ConfigData { get; set; }
 
+
+        public ErrorLogWriter ErrorLogWriter { get; set; }
+
         /// <summary>
         /// Constructor for the class 
         /// Assign the Property ConfigData
@@ -39,16 +42,17 @@ namespace ShadowAdwords
             {
                 if (numberTB.Text != "" && nameTB.Text != "" && amountTLTB.Text != "")
                 {
-                    bool result = Mailer.SendChargeEmail(ConfigData.accountantEmails, amountTLTB.Text,
+                    string result = Mailer.SendChargeEmail(ConfigData.accountantEmails, amountTLTB.Text,
                                        $"{numberTB.Text + "_" + nameTB.Text}", ConfigData.authToken);
 
-                    if (result)
+                    if (result == "")
                     {
                         MessageBox.Show("Email Sent Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else
                     {
+                        ErrorLogWriter.LogError(result);
                         MessageBox.Show("Ugh Something Went Wrong!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

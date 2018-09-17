@@ -10,3 +10,4 @@ D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdw
 D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Release\ShadowAdwords.csproj.CoreCompileInputs.cache
 D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Release\ShadowAdwords.exe
 D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Release\ShadowAdwords.pdb
+D:\GitHub\AdWords-Shadow-Tech\AdWords-Shadow-Tech-master\ShadowAdwords\ShadowAdwords\obj\Release\ShadowAdwords.csprojAssemblyReference.cache

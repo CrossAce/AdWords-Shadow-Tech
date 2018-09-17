@@ -111,26 +111,36 @@ namespace ShadowAdwords
                 else
                 {
                     FilePath = RenameFile(CFFileNameTemplate);
-                    var emails = GetSelectedEmails();
-                    if (emails.Length > 0)
+                    FileInfo info = new FileInfo(FilePath);
+                    if(info.Length < 25000000)
                     {
-                        string result = Mailer.SendCFReportsEmail(emails,
-                        RemoveWhitespace(inputTB.Text),
-                        ConfigData.authToken,
-                        FilePath,
-                        SLR_RB.Checked);
-                        if (result == "")
+                        var emails = GetSelectedEmails();
+                        if (emails.Length > 0)
                         {
-                            MessageBox.Show("Email Sent Successfully","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ugh Something Went Wrong!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            ErrorLogWriter.LogError(result);
-                        }
+                            string result = Mailer.SendCFReportsEmail(emails,
+                            RemoveWhitespace(inputTB.Text),
+                            ConfigData.authToken,
+                            FilePath,
+                            SLR_RB.Checked);
+                            if (result == "")
+                            {
+                                MessageBox.Show("Email Sent Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ugh Something Went Wrong!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                ErrorLogWriter.LogError(result);
+                            }
 
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Attachment Size is above 25MB.\nPlease send the message manualy.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        this.Close();
+                    }
+                   
                   
                 }
 
